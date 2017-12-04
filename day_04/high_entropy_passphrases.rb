@@ -2,13 +2,19 @@ Passphrase = Struct.new(:text) do
   def word_counts
     counts = Hash.new(0)
     text.split(" ").each do |word|
-      counts[word] += 1
+      # For Part 1 solution
+      # counts[word] += 1
+      counts[order_word(word)] += 1
     end
     counts
   end
-  
+
   def valid?
     word_counts.values.all? { |count| count == 1 }
+  end
+  
+  def order_word(word)
+    word.split("").sort.join("")
   end
 end
 
